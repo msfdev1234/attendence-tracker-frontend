@@ -5,11 +5,10 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
   Avatar,
   Tooltip,
   Button,
@@ -29,32 +28,20 @@ import {
 } from "@/data";
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 
-export function Home() {
-  return (
-    <div className="mt-12">
 
-      <Typography variant="h5" color="blue-gray" className="mb-2">
+
+
+
+export function MyCourses() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(!open);
+  return (
+    <div className="mt-10">
+      <Typography variant="h5" color="blue-gray " className="mb-2" >
         Welcome Back Student
       </Typography>
 
-      {/* charts for the student */}
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
-        {statisticsChartsData.map((props) => (
-          <StatisticsChart
-            key={props.title}
-            {...props}
-            footer={
-              <Typography
-                variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
-              >
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
-                &nbsp;{props.footer}
-              </Typography>
-            }
-          />
-        ))}
-      </div>
       {/* cards for the student registred courses */}
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
         <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm">
@@ -82,7 +69,7 @@ export function Home() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["courses", "completion"].map((el) => (
+                  {["courses", "completion", "Log in to class"].map((el) => (
                     <th
                       key={el}
                       className="border-b border-blue-gray-50 py-3 px-6 text-left"
@@ -123,6 +110,11 @@ export function Home() {
                           />
                         </div>
                       </td>
+                      <td className={className}>
+                        <Button onClick={handleOpen} className=" text-xs font-medium">
+                          Log in to class
+                        </Button>
+                      </td>
                     </tr>
                   );
                 })}
@@ -131,24 +123,67 @@ export function Home() {
           </CardBody>
         </Card>
         <Card className="mt-6 w-96">
-        <CardHeader color="blue-gray" className="relative h-56">
-          <img
-            src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-            alt="card-image"
-          />
-        </CardHeader>
-        <CardBody>
-          <Typography variant="paragraph">
-            Looking for a New course?
-          </Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
-          <a href="/student/course-register"><Button>Register Here</Button></a>
-        </CardFooter>
-      </Card>
+          <CardHeader color="blue-gray" className="relative h-56">
+            <img
+              src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+              alt="card-image"
+            />
+          </CardHeader>
+          <CardBody>
+            <Typography variant="paragraph">
+              Looking for a New course?
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-0">
+            <a href="/student/course-register"><Button>Register Here</Button></a>
+          </CardFooter>
+        </Card>
       </div>
+
+      {/* charts for the student */}
+      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+        {statisticsChartsData.map((props) => (
+          <StatisticsChart
+            key={props.title}
+            {...props}
+            footer={
+              <Typography
+                variant="small"
+                className="flex items-center font-normal text-blue-gray-600"
+              >
+                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
+                &nbsp;{props.footer}
+              </Typography>
+            }
+          />
+        ))}
+      </div>
+
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>Mark Attendance</DialogHeader>
+        <DialogBody>
+        Your location will be captured to verify your presence for attendance. Make sure you are near the designated location.
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
+
+
+
+
     </div >
   );
 }
 
-export default Home;
+export default MyCourses;
