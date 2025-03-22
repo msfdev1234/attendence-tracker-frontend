@@ -6,7 +6,7 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications,CourseRegister } from "@/pages/student";
+import { MyCourses, Profile, Tables, Notifications,CourseRegister } from "@/pages/student";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -20,7 +20,7 @@ export const studentRoutes = [
         icon:<ServerStackIcon {...icon} />,
         name: "My Courses",
         path: "/my-courses",
-        element: <Home />,
+        element: <MyCourses />,
       },{
         icon: <HomeIcon {...icon} />,
         name: "Register Course",
