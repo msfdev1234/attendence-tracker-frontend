@@ -19,8 +19,8 @@ export const studentRoutes = [
     pages: [
       {
         icon: <HomeIcon {...icon} />,
-        name: "Student",
-        path: "/home",
+        name: "My Courses",
+        path: "/my-courses",
         element: <Home />,
       },
       {
@@ -31,13 +31,13 @@ export const studentRoutes = [
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
+        name: "Attendance",
+        path: "/attendance",
         element: <Tables />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
-        name: "notifications",
+        name: "Notifications",
         path: "/notifications",
         element: <Notifications />,
       },

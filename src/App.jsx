@@ -26,7 +26,7 @@ function App() {
             <>
               <Route path="/student/*" element={<StudentDashboard />} />
               {/* Redirect all other routes to Student Dashboard */}
-              <Route path="*" element={<Navigate to="/student/home" replace />} />
+              <Route path="*" element={<Navigate to="/student/my-courses" replace />} />
             </>
           ) : (
             // If the user has an unknown role, you can redirect them to the login page or a default screen.
